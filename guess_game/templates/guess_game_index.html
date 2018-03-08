@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+
+<h1>Guess a Number Game</h1>
+
+{% if success %}
+    <div>You win! Tries needed: {{turn}}.</div>
+    <p></p>
+    <form action="/guess_game/" method="post">
+        <input type="submit" value="Start new game">
+    </form>
+{% elif turn > 0 %}
+    <div>Try again! You guessed {{ guessed_number }}. The secret number is {{ hint }}.</div>
+{% else %}
+    <div>Welcome to the Game!</div>
+{% endif %}
+
+{% if not success%}
+    <form action="/guess_game/" method="post">
+        <label for="guess_game">Guess a number: </label>
+        <input id="guess_number" type="number" name="guess_number" value="" required>
+        <input type="submit" value="OK">
+    </form>
+{% endif %}
